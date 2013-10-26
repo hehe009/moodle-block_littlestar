@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/littlestar/db" VERSION="20131001" COMMENT="XMLDB file for Moodle blocks/littlestar"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_littlestar_user" COMMENT="store users' rating date" NEXT="block_littlestar_item">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="ratedate"/>
+        <FIELD NAME="ratedate" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="user"/>
+        <FIELD NAME="user" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="ratedate" NEXT="item"/>
+        <FIELD NAME="item" TYPE="char" LENGTH="16" NOTNULL="true" SEQUENCE="false" PREVIOUS="user"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="key_item"/>
+        <KEY NAME="key_item" TYPE="foreign" FIELDS="item" REFTABLE="block_littlestar_item" REFFIELDS="item" PREVIOUS="primary"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ind_ratedate" UNIQUE="false" FIELDS="ratedate" NEXT="ind_user"/>
+        <INDEX NAME="ind_user" UNIQUE="false" FIELDS="user" PREVIOUS="ind_ratedate"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="block_littlestar_item" COMMENT="rating items" PREVIOUS="block_littlestar_user">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="item"/>
+        <FIELD NAME="item" TYPE="char" LENGTH="16" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="course"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="course id" PREVIOUS="item" NEXT="totalrate"/>
+        <FIELD NAME="totalrate" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="course" NEXT="nrrates"/>
+        <FIELD NAME="nrrates" TYPE="int" LENGTH="9" NOTNULL="true" DEFAULT="1" SEQUENCE="false" PREVIOUS="totalrate"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="key_item"/>
+        <KEY NAME="key_item" TYPE="unique" FIELDS="item" PREVIOUS="primary"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ind_course" UNIQUE="false" FIELDS="course" COMMENT="index of course id"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

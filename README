@@ -1,0 +1,27 @@
+Moodle block littlestar
+
+Author: Max Kan max_kan@hotmail.com
+
+Feature:
+1. allow course participants rate course/resources/activities
+2. AJAX
+3. rating can be exported
+
+***************************************************************************
+
+    Ajax rating works based on 'Ajax-PHP Rating Stars Script'
+    from 'CourseWeb programming'
+
+    http://coursesweb.net/php-mysql/rating-stars-script-ajax-php_s2
+
+***************************************************************************
+
+Installation:
+1. Copy folder Moodle-block_littlestar to <MOODLE_HOME>/block/littlestar
+2. Login Moodle as Admin
+3. Run Notifications
+
+User guide:
+1. Teacher add the block to the course
+2. Configure the block instance, swith the 'Display on page types' to 'Any page' in order
+    to allow the block appear in resource/activity page
