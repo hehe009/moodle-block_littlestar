@@ -45,7 +45,6 @@ class block_littlestar extends block_base {
         // context is module level
         if ($this->page->context->contextlevel == 70) {
             $this->content->text .= '<br>'.get_string('ratethis', 'block_littlestar').$this->page->cm->modname;
-            $this->content->text .= '<br>cmid: '.$this->page->cm->id;
             $this->content->text .= '<div class="srtgs" id="rt_'.$this->page->context->contextlevel.'_'.$this->page->cm->id.'"></div>';
         } else if ($this->page->context->contextlevel == 50) { // context is course level
             $this->content->text .= get_string('ratecourse', 'block_littlestar');
